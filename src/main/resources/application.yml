@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: pear-customer-service
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/pear_customer_service?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC}
+    username: ${DB_USERNAME:pear_demo}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+  ai:
+    model:
+      chat: openai
+      audio:
+        speech: none
+        transcription: none
+      embedding: none
+      image: none
+      moderation: none
+    openai:
+      api-key: ${AI_API_KEY}
+      base-url: ${AI_BASE_URL:https://api.deepseek.com}
+      chat:
+        options:
+          model: ${AI_MODEL:deepseek-chat}
+          temperature: 0.2
+      embedding:
+        options:
+          model: ${AI_EMBEDDING_MODEL:text-embedding-3-small}
+    vectorstore:
+      qdrant:
+        host: ${QDRANT_HOST:localhost}
+        port: ${QDRANT_PORT:6334}
+        collection-name: pear_knowledge
+        initialize-schema: true
+  mvc:
+    problemdetails:
+      enabled: true
+  jackson:
+    time-zone: UTC
+
+server:
+  port: 8080
+
+app:
+  agent:
+    model-timeout: 30s
+  knowledge:
+    similarity-threshold: 0.75

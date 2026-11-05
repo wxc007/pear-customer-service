@@ -1,0 +1,15 @@
+logging:
+  level:
+    com.pear.customerservice.agent.service.AgentService: ERROR
+
+spring:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  mvc:
+    problemdetails:
+      enabled: true
+  ai:
+    openai:
+      api-key: test-only-model-stub

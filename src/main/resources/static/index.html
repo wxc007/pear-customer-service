@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梨产品智能客服 · 会话与商品目录</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="page-header">
+    <div>
+        <p class="eyebrow">PEAR CUSTOMER SERVICE</p>
+        <h1>梨产品智能客服</h1>
+        <p class="subtitle">游客流式咨询与 SPU / SKU 商品目录联调页面</p>
+    </div>
+    <span class="demo-badge">演示数据</span>
+</header>
+
+<main>
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <section class="panel chat-panel" aria-labelledby="chat-title">
+        <div class="panel-heading">
+            <div>
+                <h2 id="chat-title">游客智能客服</h2>
+                <p id="chat-status" class="muted">正在创建游客会话…</p>
+            </div>
+            <button id="new-conversation" type="button" class="secondary-button">新建会话</button>
+        </div>
+        <div id="chat-messages" class="chat-messages" aria-live="polite">
+            <p class="empty">可以询问鲜梨或梨制品的实时商品信息。</p>
+        </div>
+        <form id="chat-form" class="chat-form">
+            <label for="chat-input" class="visually-hidden">咨询内容</label>
+            <textarea id="chat-input" rows="2" maxlength="4000" required
+                      placeholder="例如：皇冠梨 2.5kg 家庭装现在多少钱？"></textarea>
+            <button id="chat-send" type="submit">发送</button>
+        </form>
+    </section>
+
+    <section class="toolbar" aria-label="商品筛选">
+        <label for="category">商品分类</label>
+        <select id="category">
+            <option value="">全部分类</option>
+        </select>
+        <button id="refresh" type="button">刷新目录</button>
+    </section>
+
+    <div class="catalog-layout">
+        <section class="panel" aria-labelledby="spu-title">
+            <div class="panel-heading">
+                <h2 id="spu-title">SPU 列表</h2>
+                <span id="spu-count" class="muted"></span>
+            </div>
+            <div id="spu-list" class="spu-list"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="detail-title">
+            <div class="panel-heading">
+                <h2 id="detail-title">规格与 SKU</h2>
+            </div>
+            <div id="detail" class="detail">
+                <p class="empty">请从左侧选择一个 SPU。</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script src="/app.js" defer></script>
+</body>
+</html>

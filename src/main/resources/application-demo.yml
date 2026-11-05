@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    username: pear_demo
+    password: pear_demo_password

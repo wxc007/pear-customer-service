@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: pear-customer-mysql
+    environment:
+      MYSQL_DATABASE: pear_customer_service
+      MYSQL_USER: pear_demo
+      MYSQL_PASSWORD: pear_demo_password
+      MYSQL_ROOT_PASSWORD: local_demo_root_password
+      TZ: UTC
+    ports:
+      - "3306:3306"
+    volumes:
+      - pear-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ulocal_healthcheck", "-plocal_healthcheck"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 20s
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+      - --default-time-zone=+00:00
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.6
+    container_name: pear-customer-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - pear-qdrant-data:/qdrant/storage
+
+volumes:
+  pear-mysql-data:
+  pear-qdrant-data:
